@@ -52,5 +52,13 @@ public class FrameworkBase {
 		System.out.println(FRAMEWORK_PROPERTIES.PAGELOAD_TIMEOUT.getValue());
 	}
 	
+	protected void waitFor(long timeToWait) {
+		try {
+			Thread.sleep(timeToWait);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

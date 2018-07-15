@@ -1,18 +1,15 @@
 package pages;
 
-public class LandingPage extends PageBase{
+public class LandingPage extends Header{
 	
-	//private String logInLink_xpath = "//span[contains(text(),'Log in')]";
+	private String logInLink_xpath = "//span[contains(text(),'Log in')]";
 	private String logInLink_xpath_absolute = "html/body/div[1]/header/div/div/section/div/div[2]/div[3]/div[1]/a/span";
 	private String logInLink_id = "NAVBAR_SIGNIN_BTN";
 	private String searchBar_xpath = "html/body/div[1]/header/div/div/section/div/div[1]/div[3]/div/div/input";
 	private String searchIcon_xpath = "html/body/div[1]/header/div/div/section/div/div[1]/div[3]/div/div/button";
 
 	public LoginPage clickLogin() {
-		
-		//clickJSById(logInLink_id);
-		clickJSByXpath(logInLink_xpath_absolute);
-		
+		click(findElementByXpath(logInLink_xpath));	
 		return new LoginPage();
 	}
 

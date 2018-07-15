@@ -6,6 +6,8 @@
        <class name="tests.TestScenario">
         <methods>
         <include name="addingItemsInTheCartAfterLogin" />
+        <include name="removingSecondItemFromTheCart" />
+        <include name="proceedToCheckoutAndAddAddress" />
       </methods>
        </class>
     </classes>
