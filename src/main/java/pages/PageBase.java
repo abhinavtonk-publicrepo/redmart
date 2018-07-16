@@ -82,7 +82,7 @@ public class PageBase extends FrameworkBase{
 		}
 
 		WebElement webElement = driver.findElement(By.xpath(xpathExpression));
-		
+
 		return webElement;		
 	}
 
@@ -117,11 +117,47 @@ public class PageBase extends FrameworkBase{
 
 		webElement.click();
 	}
-	
+
+	protected void clickByXpath(String xpathExpression) {
+
+		WebElement webElement = findElementByXpath(xpathExpression);
+
+		if(FRAMEWORK_PROPERTIES.ANGULAR_MODE.getValue().equals("true")){
+			WebDriverWait wait = new WebDriverWait(driver, 30);		 
+			wait.until(ExpectedConditions.elementToBeClickable(webElement));
+		}
+
+		webElement.click();
+	}
+
+	protected void clickById(String id) {
+
+		WebElement webElement = findElementByID(id);
+
+		if(FRAMEWORK_PROPERTIES.ANGULAR_MODE.getValue().equals("true")){
+			WebDriverWait wait = new WebDriverWait(driver, 30);		 
+			wait.until(ExpectedConditions.elementToBeClickable(webElement));
+		}
+
+		webElement.click();
+	}
+
+	protected void clickByName(String name) {
+
+		WebElement webElement = findElementByName(name);
+
+		if(FRAMEWORK_PROPERTIES.ANGULAR_MODE.getValue().equals("true")){
+			WebDriverWait wait = new WebDriverWait(driver, 30);		 
+			wait.until(ExpectedConditions.elementToBeClickable(webElement));
+		}
+
+		webElement.click();
+	}
+
 	protected void enterText(WebElement webElement, String text) {
 		webElement.sendKeys(text);
 	}
-	
+
 	protected void enterText(WebElement webElement, Keys key) {
 		webElement.sendKeys(key);
 	}
@@ -135,7 +171,7 @@ public class PageBase extends FrameworkBase{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.evaluate('"+xpath +"', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();");
 	}
-	
+
 	protected void clickJSByXpath(WebElement webElement) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", webElement);
@@ -173,7 +209,7 @@ public class PageBase extends FrameworkBase{
 		driver.navigate().to(FRAMEWORK_PROPERTIES.URL.getValue()+ endPoint);
 
 	}
-	
+
 	protected String captureText(WebElement webElement) {
 		String capturedText = webElement.getText();
 		return capturedText;
@@ -186,24 +222,24 @@ public class PageBase extends FrameworkBase{
 		}
 
 		List<WebElement> webElements = driver.findElements(By.xpath(xpathExpression));
-		
+
 		return webElements.size();
 
 	}
-	
+
 	protected void scrollToWebElementJS(WebElement webElement) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);",webElement);
 	}
-	
+
 	protected void waitForWebElementToBecomeInvisible(String xpathExpression) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);		 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpathExpression)));
 	}
-	
+
 	protected void changeWebElementAttribute(WebElement webElement, String attribute, String changedValue) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", webElement, attribute, changedValue);
 	}
-	
+
 }
